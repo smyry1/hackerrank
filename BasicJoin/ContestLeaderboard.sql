@@ -1,4 +1,4 @@
---Problem
+--Problem Statement
 /*
 You did such a great job helping Julia with her last coding contest challenge that she wants you to work on this one, too!
 The total score of a hacker is the sum of their maximum scores for all of the challenges.
