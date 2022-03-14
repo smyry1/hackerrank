@@ -19,13 +19,14 @@ SUM(v.sum3) AS sum33,
 SUM(v.sum4) AS sum44
 FROM Contests c1
 INNER JOIN Colleges c2 ON c1.contest_id = c2.contest_id
-INNER JOIN Challenges c3 ON c2.college_id = c3.college_id
+INNER JOIN Challenges c3 ON c2.college_id = c3.college_id  ### just inner join these 2 tables simply
+### to calculate the sums
 LEFT JOIN 
     (SELECT challenge_id,
      SUM(total_views) AS sum3,
      SUM(total_unique_views) AS sum4
      FROM View_Stats
-     GROUP BY challenge_id) v
+     GROUP BY challenge_id) v  ### remember to give subquery a name
 ON c3.challenge_id = v.challenge_id
 LEFT JOIN
     (SELECT challenge_id,
@@ -35,5 +36,5 @@ LEFT JOIN
      GROUP BY challenge_id) s
 ON c3.challenge_id = s.challenge_id
 GROUP BY c1.contest_id,c1.hacker_id,c1.name
-HAVING sum11 != 0 OR sum22 != 0 OR sum33 != 0 OR sum44 != 0
+HAVING sum11 != 0 OR sum22 != 0 OR sum33 != 0 OR sum44 != 0  ### to exclude thus 4 sums are all 0
 ORDER BY c1.contest_id;
